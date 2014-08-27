@@ -100,6 +100,8 @@ var segment = function(life, x, y, width, height) {
 	
 	this.draw = function() {
 		leContext.putImageData(self.leColours, self.x, self.y);
+		leContext.rect(self.x, self.y, self.width, self.height);
+		leContext.stroke();
 	}
 	
 	this.fractate = function() {

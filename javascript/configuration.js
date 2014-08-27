@@ -18,5 +18,5 @@ leImage.onload = function () {
 
 leImage.crossOrigin="anonymous" //<-- wtf? I need this and to use imgur.....?
 
-//leImage.src = 'http://i.imgur.com/WHDKDu3.jpg';
-leImage.src = 'http://i.imgur.com/FgfHa1I.jpg?1';
+leImage.src = 'http://i.imgur.com/WHDKDu3.jpg';
+//leImage.src = 'http://i.imgur.com/FgfHa1I.jpg?1';
