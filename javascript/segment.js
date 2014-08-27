@@ -101,11 +101,13 @@ var segment = function(life, x, y, width, height) {
 	this.draw = function() {
 		leContext.putImageData(self.leColours, self.x, self.y);
 		leContext.rect(self.x, self.y, self.width, self.height);
+		leContext.strokeStyle = '#333';
 		leContext.stroke();
 	}
 	
 	this.fractate = function() {
-		var sensitivity = 1;
+		if(self.width < 10) return;
+		
 		if((self.leDeltas.highRed - self.leDeltas.lowRed) < 100) {
 			if((self.leDeltas.highBlue - self.leDeltas.lowBlue) < 100) {
 				if((self.leDeltas.highGreen - self.leDeltas.lowGreen) < 100) {
@@ -132,6 +134,6 @@ var segment = function(life, x, y, width, height) {
 			for(leSegment in leSegments) {
 				leSegments[leSegment].fractate();
 			}
-		}, 1000);
+		}, 100);
 	}
 }
