@@ -9,14 +9,14 @@ var deltas = function() {
 
 var segment = function(life, x, y, width, height) {
 	var self = this;
-	
+
 	this.life = life;
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
 	this.leDeltas = new deltas();
-	
+
 	this.calculate = function() {
 		self.leColours = leOriginalContext.getImageData(x, y, width, height);
 		var leTotalRed = [];
@@ -25,7 +25,7 @@ var segment = function(life, x, y, width, height) {
 		var leRedSubTotal = 0;
 		var leGreenSubTotal = 0;
 		var leBlueSubTotal = 0;
-		
+
 		var deltaCounter = 0;
 		for(datum=0; datum < self.leColours.data.length;) {
 			leRedSubTotal += self.leColours.data[datum]; //red
@@ -86,7 +86,7 @@ var segment = function(life, x, y, width, height) {
 		self.leAverageRed /= leTotalRed.length;
 		self.leAverageGreen /= leTotalGreen.length;
 		self.leAverageBlue /= leTotalBlue.length;
-		
+
 		for(datum=0; datum < self.leColours.data.length;) {
 			self.leColours.data[datum] = self.leAverageRed; //red
 			datum++;
@@ -97,17 +97,17 @@ var segment = function(life, x, y, width, height) {
 			datum++; //skip alpha
 		}
 	}
-	
+
 	this.draw = function() {
 		leContext.putImageData(self.leColours, self.x, self.y);
 		leContext.rect(self.x, self.y, self.width, self.height);
 		leContext.strokeStyle = '#333';
 		leContext.stroke();
 	}
-	
+
 	this.fractate = function() {
-		if(self.width < 10) return;
-		
+		if(self.width < 20) return;
+
 		if((self.leDeltas.highRed - self.leDeltas.lowRed) < 100) {
 			if((self.leDeltas.highBlue - self.leDeltas.lowBlue) < 100) {
 				if((self.leDeltas.highGreen - self.leDeltas.lowGreen) < 100) {
@@ -115,22 +115,22 @@ var segment = function(life, x, y, width, height) {
 				}
 			}
 		}
-		
+
 		setTimeout(function() {
 			var leSegments = [];
 			leSegments.push(new segment(self.life-1, self.x, self.y, self.width/2, self.height/2));
 			leSegments.push(new segment(self.life-1, self.x+self.width/2, self.y, self.width/2, self.height/2));
 			leSegments.push(new segment(self.life-1, self.x, self.y+self.height/2, self.width/2, self.height/2));
 			leSegments.push(new segment(self.life-1, self.x+self.width/2, self.y+self.height/2, self.width/2, self.height/2));
-			
+
 			for(leSegment in leSegments) {
 				leSegments[leSegment].calculate();
 			}
-			
+
 			for(leSegment in leSegments) {
 				leSegments[leSegment].draw();
 			}
-			
+
 			for(leSegment in leSegments) {
 				leSegments[leSegment].fractate();
 			}

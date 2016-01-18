@@ -1,8 +1,19 @@
 <html>
 <head>
 	<title>Fractulation</title>
+	<style>
+		.static {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+		}
+	</style>
 </head>
 <body>
+	<div class="static">
+		<input id="imgurLink" style="width: 400px" value="http://i.imgur.com/1BpIdnf.jpg"></input>
+		<button id="doQuadify">Quadify!</button>
+	</div>
 	<canvas id="leCanvas"></canvas>
 	<canvas id="leOriginalCanvas"></canvas>
 </body>
