@@ -9,14 +9,21 @@ leImage.onload = function () {
 	leOriginalCanvas.width = leImage.width;
 	leOriginalCanvas.height = leImage.height;
 	leOriginalContext.drawImage(leImage, 0, 0, leImage.width, leImage.height);
-	
+
 	leCanvas.width = leImage.width;
 	leCanvas.height = leImage.height;
-	
+
 	fractate();
 }
 
 leImage.crossOrigin="anonymous" //<-- wtf? I need this and to use imgur.....?
 
-leImage.src = 'http://i.imgur.com/WHDKDu3.jpg';
-//leImage.src = 'http://i.imgur.com/FgfHa1I.jpg?1';
+// leImage.src = 'http://i.imgur.com/WHDKDu3.jpg';
+//leImage.src = 'http://i.imgur.com/FgfHa1I.jpg?';
+// leImage.src = 'http://i.imgur.com/1BpIdnf.jpg'
+
+button = document.querySelector('#doQuadify')
+button.onclick = function() {
+	leImage.src = document.querySelector('#imgurLink').value
+}
+button.click()
