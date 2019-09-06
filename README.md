@@ -1,3 +1,3 @@
-# QuadArt (Last worked on 4-5 years ago)
+# QuadArt (Last updated 2015)
 
 https://ascendzor.github.io/QuadArt/
